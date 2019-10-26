@@ -3,6 +3,7 @@ namespace Concrete\Package\ThemeSwitcher;
 
 use Concrete\Core\Application\Application;
 use Concrete\Core\Package\Package;
+use Concrete5cojp\ThemeSwitcher\Console\Command\ApplyThemeCommand;
 use Concrete5cojp\ThemeSwitcher\Console\Command\SwitchThemeCommand;
 
 class Controller extends Package
@@ -29,6 +30,7 @@ class Controller extends Package
         if (Application::isRunThroughCommandLineInterface()) {
             /** @var \Concrete\Core\Console\Application $console */
             $console = $this->app->make('console');
+            $console->add($this->app->make(ApplyThemeCommand::class));
             $console->add($this->app->make(SwitchThemeCommand::class));
         }
     }
